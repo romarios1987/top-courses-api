@@ -1,9 +1,9 @@
-class ProductCharacteristic {
+class ProductCharacteristicDto {
 	name: string
 	value: string
 }
 
-export class ProductModel {
+export class CreateProductDto {
 	image: string
 	title: string
 	price: number
@@ -15,5 +15,5 @@ export class ProductModel {
 	disAdvantages: string
 	categories: string[]
 	tags: string[]
-	characteristics: ProductCharacteristic[]
+	characteristics: ProductCharacteristicDto[]
 }

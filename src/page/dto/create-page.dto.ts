@@ -1,25 +1,20 @@
-export enum TopLevelCategory {
-	Courses,
-	Services,
-	Books,
-	Products,
-}
+import { TopLevelCategory } from '../schemas/page.schema'
 
-class PageAdvantage {
+class TopPageAdvantageDto {
 	title: string
 	description: string
 }
 
-export class PageModel {
+export class CreatePageDto {
 	firstCategory: TopLevelCategory
 	secondCategory: string
-	category: string
 	alias: string
 	title: string
 	metaTitle: string
 	metaDescription: string
+	category: string
+	advantages?: TopPageAdvantageDto[]
+	seoText?: string
 	tagsTitle: string
 	tags: string[]
-	seoText?: string
-	advantages?: PageAdvantage[]
 }

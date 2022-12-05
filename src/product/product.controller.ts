@@ -8,14 +8,17 @@ import {
 	Patch,
 	Post,
 } from '@nestjs/common'
+import { CreateProductDto } from './dto/create-product.dto'
 import { FindProductDto } from './dto/find-product.dto'
-import { ProductModel } from './product.model'
+import { ProductService } from './product.service'
 
 @Controller('product')
 export class ProductController {
+	constructor(private readonly productService: ProductService) {}
+
 	@Post('create')
-	async create(@Body() dto: Omit<ProductModel, '_id'>) {
-		console.log(dto)
+	async create(@Body() dto: CreateProductDto) {
+		return this.productService.create(dto)
 	}
 
 	@Get(':id')
@@ -29,7 +32,7 @@ export class ProductController {
 	}
 
 	@Patch(':id')
-	async patch(@Param('id') id: string, @Body() dto: ProductModel) {
+	async patch(@Param('id') id: string, @Body() dto: CreateProductDto) {
 		console.log(id, dto)
 	}
 

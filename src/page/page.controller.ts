@@ -8,13 +8,12 @@ import {
 	Patch,
 	Post,
 } from '@nestjs/common'
+import { CreatePageDto } from './dto/create-page.dto'
 import { FindPageDto } from './dto/find-page.dto'
-import { PageModel } from './page.model'
-
 @Controller('page')
 export class PageController {
 	@Post('create')
-	async create(@Body() dto: Omit<PageModel, '_id'>) {
+	async create(@Body() dto: CreatePageDto) {
 		console.log(dto)
 	}
 
@@ -29,7 +28,7 @@ export class PageController {
 	}
 
 	@Patch(':id')
-	async patch(@Param('id') id: string, @Body() dto: PageModel) {
+	async patch(@Param('id') id: string, @Body() dto: CreatePageDto) {
 		console.log(id, dto)
 	}
 
