@@ -8,6 +8,12 @@ export class User {
 	email: string
 
 	@Prop()
+	name: string
+
+	@Prop()
+	nickname: string
+
+	@Prop()
 	passwordHash: string
 }
 
