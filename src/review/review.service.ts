@@ -1,4 +1,4 @@
-import { Model, Types } from 'mongoose'
+import { Model } from 'mongoose'
 import { Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
 import { CreateReviewDto } from './dto/create-review.dto'
@@ -21,8 +21,6 @@ export class ReviewService {
 	}
 
 	async findByProductId(productId: string): Promise<Review[]> {
-		return this.reviewModel
-			.find({ productId: new Types.ObjectId(productId) })
-			.exec()
+		return this.reviewModel.find({ productId }).exec()
 	}
 }

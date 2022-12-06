@@ -7,7 +7,9 @@ import {
 	Post,
 	HttpException,
 	HttpStatus,
+	UseGuards,
 } from '@nestjs/common'
+import { JwtAuthGuard } from 'src/auth/guards/jwt.guard'
 import { CreateReviewDto } from './dto/create-review.dto'
 import { REVIEW_NOT_FOUND_ERROR } from './review.constants'
 import { ReviewService } from './review.service'
@@ -29,7 +31,8 @@ export class ReviewController {
 		}
 	}
 
-	@Get('buyProduct/:productId')
+	@UseGuards(JwtAuthGuard)
+	@Get('byProduct/:productId')
 	async getByProduct(@Param('productId') productId: string) {
 		return this.reviewService.findByProductId(productId)
 	}
