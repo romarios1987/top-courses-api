@@ -10,6 +10,7 @@ import {
 	UseGuards,
 } from '@nestjs/common'
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard'
+import { IdValidationPipe } from 'src/pipes/id-validation.pipe'
 import { CreateReviewDto } from './dto/create-review.dto'
 import { REVIEW_NOT_FOUND_ERROR } from './review.constants'
 import { ReviewService } from './review.service'
@@ -24,7 +25,7 @@ export class ReviewController {
 	}
 
 	@Delete(':id')
-	async delete(@Param('id') id: string) {
+	async delete(@Param('id', IdValidationPipe) id: string) {
 		const deletedDoc = await this.reviewService.delete(id)
 		if (!deletedDoc) {
 			throw new HttpException(REVIEW_NOT_FOUND_ERROR, HttpStatus.NOT_FOUND)

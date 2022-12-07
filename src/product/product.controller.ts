@@ -12,6 +12,7 @@ import {
 	UseGuards,
 } from '@nestjs/common'
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard'
+import { IdValidationPipe } from 'src/pipes/id-validation.pipe'
 import { CreateProductDto } from './dto/create-product.dto'
 import { FindProductDto } from './dto/find-product.dto'
 import { PRODUCT_NOT_FOUND_ERROR } from './product.constants'
@@ -28,7 +29,7 @@ export class ProductController {
 	}
 
 	@Get(':id')
-	async get(@Param('id') id: string) {
+	async get(@Param('id', IdValidationPipe) id: string) {
 		const product = await this.productService.findById(id)
 		if (!product) {
 			throw new HttpException(PRODUCT_NOT_FOUND_ERROR, HttpStatus.NOT_FOUND)
@@ -38,7 +39,7 @@ export class ProductController {
 
 	@UseGuards(JwtAuthGuard)
 	@Delete(':id')
-	async delete(@Param('id') id: string) {
+	async delete(@Param('id', IdValidationPipe) id: string) {
 		const deletedProduct = await this.productService.deleteById(id)
 		if (!deletedProduct) {
 			throw new HttpException(PRODUCT_NOT_FOUND_ERROR, HttpStatus.NOT_FOUND)
@@ -47,7 +48,10 @@ export class ProductController {
 
 	@UseGuards(JwtAuthGuard)
 	@Patch(':id')
-	async patch(@Param('id') id: string, @Body() dto: CreateProductDto) {
+	async patch(
+		@Param('id', IdValidationPipe) id: string,
+		@Body() dto: CreateProductDto,
+	) {
 		const updatedProduct = await this.productService.updateById(id, dto)
 		if (!updatedProduct) {
 			throw new HttpException(PRODUCT_NOT_FOUND_ERROR, HttpStatus.NOT_FOUND)
@@ -58,6 +62,6 @@ export class ProductController {
 	@HttpCode(200)
 	@Post('find')
 	async find(@Body() dto: FindProductDto) {
-		console.log(dto)
+		return this.productService.findProductsWithReviews(dto)
 	}
 }
