@@ -23,7 +23,7 @@ export class Product {
 	price: number
 
 	@Prop()
-	oldPrice: number
+	oldPrice?: number
 
 	@Prop()
 	credit: number
