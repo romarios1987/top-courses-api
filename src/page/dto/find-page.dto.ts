@@ -1,5 +1,5 @@
-import { TopLevelCategory } from '../schemas/page.schema'
+import { TopLevelCategory } from '../schemas/page.schema';
 
 export class FindPageDto {
-	firstCategory: TopLevelCategory
+  firstCategory: TopLevelCategory;
 }

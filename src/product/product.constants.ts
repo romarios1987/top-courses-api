@@ -1,1 +1,1 @@
-export const PRODUCT_NOT_FOUND_ERROR = 'Product not found by ID'
+export const PRODUCT_NOT_FOUND_ERROR = 'Product not found by ID';

@@ -1,53 +1,53 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
-import { HydratedDocument } from 'mongoose'
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { HydratedDocument } from 'mongoose';
 
-export type ProductDocument = HydratedDocument<Product>
+export type ProductDocument = HydratedDocument<Product>;
 
 class ProductCharacteristic {
-	@Prop()
-	name: string
+  @Prop()
+  name: string;
 
-	@Prop()
-	value: string
+  @Prop()
+  value: string;
 }
 
 @Schema({ timestamps: true })
 export class Product {
-	@Prop()
-	image: string
+  @Prop()
+  image: string;
 
-	@Prop()
-	title: string
+  @Prop()
+  title: string;
 
-	@Prop()
-	price: number
+  @Prop()
+  price: number;
 
-	@Prop()
-	oldPrice?: number
+  @Prop()
+  oldPrice?: number;
 
-	@Prop()
-	credit: number
+  @Prop()
+  credit: number;
 
-	@Prop()
-	initialRating: number
+  @Prop()
+  initialRating: number;
 
-	@Prop()
-	description: string
+  @Prop()
+  description: string;
 
-	@Prop()
-	advantages: string
+  @Prop()
+  advantages: string;
 
-	@Prop()
-	disAdvantages: string
+  @Prop()
+  disAdvantages: string;
 
-	@Prop([String])
-	categories: string[]
+  @Prop([String])
+  categories: string[];
 
-	@Prop([String])
-	tags: string[]
+  @Prop([String])
+  tags: string[];
 
-	@Prop([ProductCharacteristic])
-	characteristics: ProductCharacteristic[]
+  @Prop([ProductCharacteristic])
+  characteristics: ProductCharacteristic[];
 }
 
-export const ProductSchema = SchemaFactory.createForClass(Product)
+export const ProductSchema = SchemaFactory.createForClass(Product);
